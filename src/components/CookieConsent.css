@@ -1,0 +1,221 @@
+.cookie-consent-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 28px;
+  overflow-y: auto;
+  background: rgba(5, 15, 29, 0.62);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+}
+
+.cookie-consent-dialog {
+  position: relative;
+  display: grid;
+  grid-template-columns: 7px minmax(0, 1fr);
+  width: min(760px, 100%);
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+  border: 1px solid rgba(255, 255, 255, 0.72);
+  border-radius: 18px;
+  background: #fff;
+  color: #142a40;
+  box-shadow: 0 24px 80px rgba(0, 0, 0, 0.24);
+  animation: cookie-consent-enter 0.25s ease-out;
+}
+
+.cookie-consent-accent {
+  background: linear-gradient(180deg, #5539a8, #126f9b);
+}
+
+.cookie-consent-content {
+  padding: 30px 32px 28px;
+}
+
+.cookie-consent-eyebrow {
+  color: #176f98;
+  font: 600 10px/1.5 "DM Mono", monospace;
+  letter-spacing: 1.5px;
+}
+
+.cookie-consent-content h2 {
+  margin: 11px 0 9px;
+  color: #102a42;
+  font: 800 clamp(22px, 3vw, 29px)/1.2 Manrope, sans-serif;
+  letter-spacing: -0.5px;
+}
+
+.cookie-consent-content > p {
+  max-width: 650px;
+  margin: 0;
+  color: #536477;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.cookie-consent-content .cookie-consent-note {
+  margin-top: 12px;
+  color: #657487;
+  font-size: 12px;
+}
+
+.cookie-settings-list {
+  margin-top: 22px;
+  border-top: 1px solid #e6ebf0;
+}
+
+.cookie-setting-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 14px 0;
+  border-bottom: 1px solid #e6ebf0;
+  cursor: pointer;
+}
+
+.cookie-setting-row h3 {
+  margin: 0;
+  color: #17314b;
+  font: 700 14px/1.4 Manrope, sans-serif;
+}
+
+.cookie-setting-row p {
+  margin: 3px 0 0;
+  color: #657487;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.cookie-setting-row input {
+  width: 18px;
+  height: 18px;
+  flex: 0 0 auto;
+  accent-color: #174e82;
+  cursor: pointer;
+}
+
+.cookie-setting-row input:disabled {
+  cursor: not-allowed;
+}
+
+.cookie-consent-actions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.cookie-button {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 17px;
+  border: 1px solid transparent;
+  border-radius: 7px;
+  font: 700 13px/1.2 "DM Sans", sans-serif;
+  cursor: pointer;
+  transition: background-color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
+}
+
+.cookie-button:hover {
+  transform: translateY(-1px);
+}
+
+.cookie-button:focus-visible,
+.cookie-setting-row input:focus-visible {
+  outline: 3px solid #5b48b7;
+  outline-offset: 3px;
+}
+
+.cookie-button-primary {
+  background: #153f68;
+  color: #fff;
+}
+
+.cookie-button-primary:hover {
+  background: #0c2e50;
+}
+
+.cookie-button-secondary {
+  border-color: #cbd6e0;
+  background: #f5f8fa;
+  color: #17314b;
+}
+
+.cookie-button-secondary:hover {
+  border-color: #7892a7;
+  background: #edf3f7;
+}
+
+.cookie-button-text {
+  background: transparent;
+  color: #3e4f62;
+}
+
+.cookie-button-text:hover {
+  background: #f0f3f6;
+}
+
+.cookie-consent-content .cookie-consent-error {
+  margin-top: 14px;
+  color: #a52424;
+  font-size: 13px;
+}
+
+@keyframes cookie-consent-enter {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .cookie-consent-overlay {
+    align-items: flex-end;
+    padding: 12px;
+  }
+
+  .cookie-consent-dialog {
+    grid-template-columns: 5px minmax(0, 1fr);
+    max-height: calc(100vh - 24px);
+    border-radius: 14px;
+  }
+
+  .cookie-consent-content {
+    padding: 23px 20px 20px;
+  }
+
+  .cookie-consent-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .cookie-consent-actions .cookie-button {
+    width: 100%;
+  }
+
+  .cookie-consent-actions .cookie-button-text {
+    grid-column: 1 / -1;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .cookie-consent-dialog {
+    animation: none;
+  }
+
+  .cookie-button {
+    transition: none;
+  }
+}
