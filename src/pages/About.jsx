@@ -54,6 +54,16 @@ export default function About() {
     },
   ];
 
+  const aboutPhotos = [
+    { src: "/about/1.jpeg", alt: "Tyre contact patch and road-surface engineering model" },
+    { src: "/about/2.jpeg", alt: "Vehicle suspension and chassis assembly" },
+    { src: "/about/3.jpeg", alt: "Automotive steering and suspension system" },
+    { src: "/about/4.jpg", alt: "Vehicle dynamics simulation model" },
+    { src: "/about/5.jpeg", alt: "Vehicle body structural analysis visualization" },
+    { src: "/about/6.jpg", alt: "Engineers reviewing an automotive CAD design" },
+    { src: "/about/7.jpg", alt: "Formula racing car on track" },
+  ];
+
   const capabilities = [
     ["Vehicle Development", "Engineering support for vehicle systems, architecture, integration and development."],
     ["Engineering Modelling", "Mathematical modelling and methods to understand and predict system behaviour."],
@@ -113,6 +123,43 @@ export default function About() {
               We approach every project with dedication and bring expertise and
               precision to help our clients achieve their engineering goals.
             </p>
+          </div>
+          <div className="about-photo-gallery" aria-label="Automotive engineering photos">
+            {aboutPhotos.map((photo) => (
+              <figure className="about-photo-slide" key={photo.src}>
+                <img src={photo.src} alt={photo.alt} loading="lazy" />
+              </figure>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="about-photo-slider-section" aria-label="Engineering in focus">
+        <div className="about-container">
+          <div className="about-photo-slider-heading">
+            <span className="about-label">ENGINEERING IN FOCUS</span>
+            <h2>Ideas in motion.</h2>
+          </div>
+        </div>
+        <div className="about-photo-slider">
+          <div className="about-photo-slider-track">
+            {[0, 1].map((setIndex) => (
+              <div
+                className="about-photo-slider-set"
+                key={setIndex}
+                aria-hidden={setIndex === 1 ? "true" : undefined}
+              >
+                {aboutPhotos.map((photo) => (
+                  <figure className="about-photo-slider-item" key={photo.src}>
+                    <img
+                      src={photo.src}
+                      alt={setIndex === 0 ? photo.alt : ""}
+                      loading={setIndex === 0 ? "eager" : "lazy"}
+                    />
+                  </figure>
+                ))}
+              </div>
+            ))}
           </div>
         </div>
       </section>
@@ -288,7 +335,13 @@ export default function About() {
           position: relative;
           isolation: isolate;
           overflow: hidden;
-          background: #0753ad;
+          background-color: #0753ad;
+          background-image:
+            linear-gradient(90deg, rgba(5, 18, 32, .88), rgba(5, 18, 32, .58) 58%, rgba(5, 18, 32, .34)),
+            url("/about/6.jpg");
+          background-position: center;
+          background-size: cover;
+          background-repeat: no-repeat;
         }
 
         .about-hero-content {
@@ -385,61 +438,92 @@ export default function About() {
         }
 
         .about-grid {
-          display: block;
+          display: grid;
+          grid-template-columns: minmax(0, .9fr) minmax(0, 1.1fr);
+          align-items: center;
+          gap: clamp(35px, 6vw, 90px);
         }
 
-        .about-image {
-          position: relative;
-          width: 100%;
-          height: clamp(390px, 34vw, 510px);
+        .about-photo-gallery {
+          display: grid;
+          grid-template-columns: repeat(4, minmax(0, 1fr));
+          grid-auto-rows: 105px;
+          gap: 10px;
+        }
+
+        .about-photo-slide {
+          margin: 0;
           overflow: hidden;
-          border: 1px solid #0753ad;
-          background: #fff;
+          border-radius: 4px;
         }
 
-        .about-image-track {
-          display: flex;
-          width: 800%;
+        .about-photo-slide:first-child,
+        .about-photo-slide:nth-child(6) {
+          grid-column: span 2;
+        }
+
+        .about-photo-slide img {
+          display: block;
+          width: 100%;
           height: 100%;
-          animation: aboutImageSlide 32s linear infinite;
+          object-fit: cover;
         }
 
-        .about-image:hover .about-image-track {
+        .about-photo-slider-section {
+          padding: 65px 0 80px;
+          overflow: hidden;
+          background: #f5f7f9;
+        }
+
+        .about-photo-slider-heading {
+          margin-bottom: 28px;
+        }
+
+        .about-photo-slider-heading h2 {
+          margin: 12px 0 0;
+          color: #102a42;
+          font-size: clamp(30px, 3vw, 42px);
+          line-height: 1.15;
+        }
+
+        .about-photo-slider {
+          width: 100%;
+          overflow: hidden;
+        }
+
+        .about-photo-slider-track {
+          display: flex;
+          width: max-content;
+          animation: aboutPhotoSliderMove 36s linear infinite;
+        }
+
+        .about-photo-slider:hover .about-photo-slider-track {
           animation-play-state: paused;
         }
 
-        .about-image-slide {
-          position: relative;
-          flex: 0 0 12.5%;
-          width: 12.5%;
-          height: 100%;
-          margin: 0;
-          padding: 18px;
-          background: #fff;
+        .about-photo-slider-set {
+          display: flex;
+          flex: none;
+          gap: 14px;
+          padding-right: 14px;
         }
 
-        .about-image-slide img {
+        .about-photo-slider-item {
+          flex: 0 0 clamp(250px, 30vw, 380px);
+          height: 240px;
+          margin: 0;
+          overflow: hidden;
+          border-radius: 4px;
+        }
+
+        .about-photo-slider-item img {
           display: block;
           width: 100%;
           height: 100%;
-          object-fit: contain;
+          object-fit: cover;
         }
 
-        .about-image-slide figcaption {
-          position: absolute;
-          right: 22px;
-          bottom: 22px;
-          display: grid;
-          width: 38px;
-          height: 38px;
-          place-items: center;
-          border: 1px solid #0753ad;
-          background: #fff;
-          color: #0753ad;
-          font: 500 13px 'DM Mono', monospace;
-        }
-
-        @keyframes aboutImageSlide {
+        @keyframes aboutPhotoSliderMove {
           to { transform: translateX(-50%); }
         }
 
@@ -701,14 +785,6 @@ export default function About() {
             gap: 40px;
           }
 
-          .about-image {
-            height: 370px;
-          }
-
-          .capability-layout {
-            gap: 35px;
-          }
-
           .mission-pillars {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
@@ -728,10 +804,6 @@ export default function About() {
             gap: 35px;
           }
 
-          .about-image {
-            height: 400px;
-          }
-
           .about-text {
             max-width: 100%;
           }
@@ -744,10 +816,6 @@ export default function About() {
             grid-template-columns: repeat(2, minmax(0, 1fr));
           }
 
-          .capability-image,
-          .capability-image img {
-            min-height: 350px;
-          }
         }
 
         /* MOBILE */
@@ -778,8 +846,24 @@ export default function About() {
             padding: 70px 0;
           }
 
-          .about-image {
-            height: 290px;
+          .about-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .about-photo-gallery {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            grid-auto-rows: 110px;
+            margin-inline: -18px;
+            width: calc(100% + 36px);
+          }
+
+          .about-photo-slider-section {
+            padding: 55px 0 65px;
+          }
+
+          .about-photo-slider-item {
+            flex-basis: 250px;
+            height: 180px;
           }
 
           .about-text h2,
@@ -815,7 +899,23 @@ export default function About() {
         }
 
         @media (prefers-reduced-motion: reduce) {
-          .about-image-track,
+          .about-photo-slider {
+            overflow-x: auto;
+            scroll-snap-type: x mandatory;
+          }
+
+          .about-photo-slider-track {
+            animation: none;
+          }
+
+          .about-photo-slider-set[aria-hidden="true"] {
+            display: none;
+          }
+
+          .about-photo-slider-item {
+            scroll-snap-align: start;
+          }
+
           .about-marquee-track {
             animation: none;
           }
