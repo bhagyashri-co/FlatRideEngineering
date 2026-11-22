@@ -1,44 +1,48 @@
-# Flat Ride Engineering — React frontend
+Flat Ride Engineering
 
-A responsive, six-page React website prototype for an automotive engineering and simulation consultancy.
+Engineering Vehicle Performance
 
-## Run locally
-1. Install Node.js 22.13 or newer.
-2. Open this folder in VS Code.
-3. Open two terminals in this folder and run:
-   ```bash
-   npm install
-   npm run dev
-   ```
-   In the second terminal, start the local enquiry API:
-   ```bash
-   npm run api
-   ```
-4. Open the local URL printed by Vite (usually http://localhost:5173).
+About the Project
 
-## Build for production
-```bash
-npm run build
-npm run preview
-```
+Flat Ride Engineering is a modern, responsive website developed for an automotive engineering and vehicle dynamics consultancy.
 
-## Pages
-- Home
-- About Us
-- Services
-- Projects / Case Studies
-- Careers
-- Contact Us (`/contact`)
-- Project Enquiry (`/project-enquiry`)
+The website presents the company's engineering services, technical expertise, projects, and capabilities through a clean and professional interface. It helps visitors understand the company's work and connect with the team through an enquiry form.
 
-## Before presenting / publishing
-- Replace the FR text logo with the official company logo.
-- Replace the draft About text with the approved company introduction.
-- Replace stock hero image and project artwork with company-approved technical images.
-- Replace placeholder email addresses and WhatsApp number in `src/siteConfig.js`, `src/components/Footer.jsx`, and `src/pages/Pages.jsx`.
-- Replace illustrative project cards with real, approved case studies. Do not present placeholder projects as completed client work.
-- Contact, project, and business enquiries are stored in SQLite tables in `data/enquiries.sqlite`; project attachments are stored in `data/uploads/`. The API listens only on `127.0.0.1:8787` and refuses to start when `NODE_ENV=production`. It is for local development only. Before accepting public submissions, configure a production backend with secure persistent storage, HTTPS, spam/rate-limit and CAPTCHA protection, and attachment malware scanning. Do not expose this local API or its database/uploads directory publicly.
-- Add real careers contact, company address and social media links.
+Technologies Used
 
-## Technology
-React, React Router, JavaScript ES modules, HTML5, CSS3, Vite and Lucide React icons.
+- React.js
+- JavaScript
+- HTML5
+- CSS3
+- Vite
+- React Router DOM
+- Lucide React Icons
+- Google Apps Script (Enquiry Form Integration)
+
+Website Sections
+
+- Home: Introduction to Flat Ride Engineering and its engineering capabilities.
+- About: Company overview and engineering approach.
+- Services: Details of automotive engineering and consultancy services.
+- Projects: Showcase of engineering projects and technical work.
+- Careers: Career opportunities and information.
+- Contact: Contact details and enquiry form for project inquiries.
+
+Key Features
+
+- Modern and professional user interface.
+- Responsive design for desktop, tablet, and mobile devices.
+- Smooth navigation between website sections.
+- Reusable React components.
+- Engineering-focused layouts and visuals.
+- Contact enquiry form integrated with Google Sheets.
+
+
+Project Purpose
+
+The purpose of this project is to establish a professional online presence for Flat Ride Engineering by showcasing its automotive engineering services, technical capabilities, and project work.
+
+---
+
+Flat Ride Engineering – Engineering Vehicle Performance.
+created by- Bhagyashri mathpati
